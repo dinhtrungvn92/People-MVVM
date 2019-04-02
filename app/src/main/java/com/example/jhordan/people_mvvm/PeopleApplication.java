@@ -27,38 +27,38 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PeopleApplication extends MultiDexApplication {
 
-  private PeopleService peopleService;
-  private Scheduler scheduler;
+    private PeopleService peopleService;
+    private Scheduler scheduler;
 
-  private static PeopleApplication get(Context context) {
-    return (PeopleApplication) context.getApplicationContext();
-  }
-
-  public static PeopleApplication create(Context context) {
-    return PeopleApplication.get(context);
-  }
-
-  public PeopleService getPeopleService() {
-    if (peopleService == null) {
-      peopleService = PeopleFactory.create();
+    private static PeopleApplication get(Context context) {
+        return (PeopleApplication) context.getApplicationContext();
     }
 
-    return peopleService;
-  }
-
-  public Scheduler subscribeScheduler() {
-    if (scheduler == null) {
-      scheduler = Schedulers.io();
+    public static PeopleApplication create(Context context) {
+        return PeopleApplication.get(context);
     }
 
-    return scheduler;
-  }
+    public PeopleService getPeopleService() {
+        if (peopleService == null) {
+            peopleService = PeopleFactory.create();
+        }
 
-  public void setPeopleService(PeopleService peopleService) {
-    this.peopleService = peopleService;
-  }
+        return peopleService;
+    }
 
-  public void setScheduler(Scheduler scheduler) {
-    this.scheduler = scheduler;
-  }
+    public Scheduler subscribeScheduler() {
+        if (scheduler == null) {
+            scheduler = Schedulers.io();
+        }
+
+        return scheduler;
+    }
+
+    public void setPeopleService(PeopleService peopleService) {
+        this.peopleService = peopleService;
+    }
+
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
 }

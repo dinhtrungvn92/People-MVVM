@@ -22,9 +22,12 @@ import java.io.Serializable;
 
 public class Picture implements Serializable {
 
-  @SerializedName("large") public String large;
+    @SerializedName("large")
+    public String large;
 
-  @SerializedName("medium") public String medium;
+    @SerializedName("medium")
+    public String medium;
 
-  @SerializedName("thumbnail") public String thumbnail;
+    @SerializedName("thumbnail")
+    public String thumbnail;
 }

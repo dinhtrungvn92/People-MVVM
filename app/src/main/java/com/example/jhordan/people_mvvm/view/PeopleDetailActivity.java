@@ -30,36 +30,37 @@ import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel;
 
 public class PeopleDetailActivity extends AppCompatActivity {
 
-  private static final String EXTRA_PEOPLE = "EXTRA_PEOPLE";
+    private static final String EXTRA_PEOPLE = "EXTRA_PEOPLE";
 
-  private PeopleDetailActivityBinding peopleDetailActivityBinding;
+    private PeopleDetailActivityBinding peopleDetailActivityBinding;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    peopleDetailActivityBinding =
-        DataBindingUtil.setContentView(this, R.layout.people_detail_activity);
-    setSupportActionBar(peopleDetailActivityBinding.toolbar);
-    displayHomeAsUpEnabled();
-    getExtrasFromIntent();
-  }
-
-  public static Intent launchDetail(Context context, People people) {
-    Intent intent = new Intent(context, PeopleDetailActivity.class);
-    intent.putExtra(EXTRA_PEOPLE, people);
-    return intent;
-  }
-
-  private void displayHomeAsUpEnabled() {
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setDisplayHomeAsUpEnabled(true);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        peopleDetailActivityBinding =
+                DataBindingUtil.setContentView(this, R.layout.people_detail_activity);
+        setSupportActionBar(peopleDetailActivityBinding.toolbar);
+        displayHomeAsUpEnabled();
+        getExtrasFromIntent();
     }
-  }
 
-  private void getExtrasFromIntent() {
-    People people = (People) getIntent().getSerializableExtra(EXTRA_PEOPLE);
-    PeopleDetailViewModel peopleDetailViewModel = new PeopleDetailViewModel(people);
-    peopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
-    setTitle(people.name.title + "." + people.name.firts + " " + people.name.last);
-  }
+    public static Intent launchDetail(Context context, People people) {
+        Intent intent = new Intent(context, PeopleDetailActivity.class);
+        intent.putExtra(EXTRA_PEOPLE, people);
+        return intent;
+    }
+
+    private void displayHomeAsUpEnabled() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    private void getExtrasFromIntent() {
+        People people = (People) getIntent().getSerializableExtra(EXTRA_PEOPLE);
+        PeopleDetailViewModel peopleDetailViewModel = new PeopleDetailViewModel(people);
+        peopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
+        setTitle(people.name.title + "." + people.name.firts + " " + people.name.last);
+    }
 }

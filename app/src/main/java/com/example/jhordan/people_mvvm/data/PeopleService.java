@@ -22,6 +22,7 @@ import io.reactivex.Observable;
 
 public interface PeopleService {
 
-  @GET Observable<PeopleResponse> fetchPeople(@Url String url);
+    @GET
+    Observable<PeopleResponse> fetchPeople(@Url String url);
 
 }

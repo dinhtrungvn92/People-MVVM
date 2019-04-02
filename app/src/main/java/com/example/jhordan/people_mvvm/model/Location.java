@@ -22,11 +22,15 @@ import java.io.Serializable;
 
 public class Location implements Serializable {
 
-  @SerializedName("street") public String street;
+    @SerializedName("street")
+    public String street;
 
-  @SerializedName("city") public String city;
+    @SerializedName("city")
+    public String city;
 
-  @SerializedName("state") public String state;
+    @SerializedName("state")
+    public String state;
 
-  @SerializedName("zip") public String zip;
+    @SerializedName("zip")
+    public String zip;
 }
