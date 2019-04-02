@@ -37,7 +37,7 @@ import java.util.Observer;
 public class PeopleActivity extends AppCompatActivity implements Observer {
 
     private PeopleActivityBinding peopleActivityBinding;
-    private PeopleViewModel peopleViewModel;
+    private static PeopleViewModel peopleViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,8 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
 
     private void initDataBinding() {
         peopleActivityBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
-        peopleViewModel = new PeopleViewModel(this);
+        if (peopleViewModel == null)
+            peopleViewModel = new PeopleViewModel(this);
         peopleActivityBinding.setMainViewModel(peopleViewModel);
     }
 
@@ -59,6 +60,7 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
         PeopleAdapter adapter = new PeopleAdapter();
         listPeople.setAdapter(adapter);
         listPeople.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setPeopleList(peopleViewModel.getPeopleList());
     }
 
     public void setupObserver(Observable observable) {
@@ -68,7 +70,7 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        peopleViewModel.reset();
+//        peopleViewModel.reset();
     }
 
     @Override
